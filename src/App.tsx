@@ -9,6 +9,13 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
+import AdminLayout from "./components/admin/AdminLayout";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminUsers from "./pages/admin/AdminUsers";
+import AdminFinance from "./pages/admin/AdminFinance";
+import ApiSettings from "./pages/admin/ApiSettings";
+import AdminSiteSettings from "./pages/admin/AdminSiteSettings";
+import AdminPlaceholder from "./pages/admin/AdminPlaceholder";
 
 const queryClient = new QueryClient();
 
@@ -24,7 +31,19 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              
+              {/* Admin Routes */}
+              <Route path="/admin" element={<AdminLayout />}>
+                <Route index element={<AdminDashboard />} />
+                <Route path="users" element={<AdminUsers />} />
+                <Route path="finance" element={<AdminFinance />} />
+                <Route path="games" element={<AdminPlaceholder title="Game Management" />} />
+                <Route path="promotions" element={<AdminPlaceholder title="Promotion Management" />} />
+                <Route path="reports" element={<AdminPlaceholder title="Reports" />} />
+                <Route path="api-settings" element={<ApiSettings />} />
+                <Route path="settings" element={<AdminSiteSettings />} />
+              </Route>
+
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
