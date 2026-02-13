@@ -4,15 +4,54 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Gamepad2, Trophy, TrendingUp, Zap, Star, Gift } from "lucide-react";
+import { Gamepad2, Trophy, TrendingUp, Zap, Star, Gift, Dice1, Crown, Flame, ChevronRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import { useState, useEffect } from "react";
+
+const bannerSlides = [
+  {
+    title: "🎉 Monthly Invite Friend Bonus!",
+    titleBn: "🎉 মাসিক বন্ধু আমন্ত্রণ বোনাস!",
+    subtitle: "Earn up to ৳1,000,000 every month",
+    subtitleBn: "প্রতি মাসে ৳১০,০০,০০০ পর্যন্ত আয় করুন",
+    gradient: "from-primary via-primary/80 to-accent/40",
+  },
+  {
+    title: "👑 Daily First Deposit Bonus ৳1688",
+    titleBn: "👑 দৈনিক প্রথম জমা বোনাস ৳১৬৮৮",
+    subtitle: "Get massive rewards on your first deposit every day!",
+    subtitleBn: "প্রতিদিন প্রথম জমায় বিশাল পুরষ্কার পান!",
+    gradient: "from-accent/30 via-primary to-primary/80",
+  },
+  {
+    title: "🎰 Welcome Bonus up to ৳8,888",
+    titleBn: "🎰 স্বাগত বোনাস ৳৮,৮৮৮ পর্যন্ত",
+    subtitle: "Join now and claim your first deposit bonus",
+    subtitleBn: "এখনই যোগ দিন এবং আপনার প্রথম জমা বোনাস দাবি করুন",
+    gradient: "from-primary/80 via-accent/20 to-primary",
+  },
+  {
+    title: "🎉 Every Friday Super Bonus Day!",
+    titleBn: "🎉 প্রতি শুক্রবার সুপার বোনাস দিবস!",
+    subtitle: "Special cashback and reload bonuses every Friday",
+    subtitleBn: "প্রতি শুক্রবার বিশেষ ক্যাশব্যাক এবং রিলোড বোনাস",
+    gradient: "from-accent/40 via-primary to-primary/60",
+  },
+];
+
+const marqueeMessages = [
+  "🎉কোটিপতি হতে আপনার ব্যক্তিগত লিঙ্কটি শেয়ার করুন!🎉",
+  "👑 দৈনিক প্রথম জমার বোনাস ৳১৬৮৮ পর্যন্ত ✨",
+  "🎉 প্রতি শুক্রবার সুপার বোনাস দিবস! 🎉",
+  "👑প্রথম জমা বোনাস সর্বোচ্চ ৳৮,৮৮৮👑",
+];
 
 const gameCategories = [
-  { icon: Gamepad2, key: "slotsCategory" as const, color: "text-neon-green", glow: "neon-glow-green", href: "/games/slots", count: "500+" },
-  { icon: Trophy, key: "liveCasinoCategory" as const, color: "text-neon-purple", glow: "neon-glow-purple", href: "/games/live-casino", count: "200+" },
-  { icon: TrendingUp, key: "sportsCategory" as const, color: "text-neon-gold", glow: "neon-glow-gold", href: "/games/sports", count: "1000+" },
-  { icon: Zap, key: "crashCategory" as const, color: "text-neon-cyan", glow: "", href: "/games/crash", count: "50+" },
-  { icon: Star, key: "miniGames" as const, color: "text-neon-pink", glow: "", href: "/games/mini", count: "100+" },
+  { icon: Gamepad2, key: "slotsCategory" as const, color: "text-secondary", href: "/games/slots", count: "500+" },
+  { icon: Trophy, key: "liveCasinoCategory" as const, color: "text-primary-foreground", href: "/games/live-casino", count: "200+" },
+  { icon: TrendingUp, key: "sportsCategory" as const, color: "text-secondary", href: "/games/sports", count: "1000+" },
+  { icon: Zap, key: "crashCategory" as const, color: "text-primary-foreground", href: "/games/crash", count: "50+" },
+  { icon: Star, key: "miniGames" as const, color: "text-secondary", href: "/games/mini", count: "100+" },
 ];
 
 const featuredGames = [
@@ -26,94 +65,144 @@ const featuredGames = [
   { name: "Dice", provider: "Custom", category: "Mini Games", hot: false },
 ];
 
+const popularGames = [
+  { name: "Big Bass Bonanza", provider: "Pragmatic Play", hot: true },
+  { name: "Book of Dead", provider: "Play'n GO", hot: false },
+  { name: "Starburst", provider: "NetEnt", hot: true },
+  { name: "Wolf Gold", provider: "Pragmatic Play", hot: false },
+  { name: "Gonzo's Quest", provider: "NetEnt", hot: true },
+  { name: "Fire Joker", provider: "Play'n GO", hot: false },
+];
+
 const Index = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % bannerSlides.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden gradient-casino">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_hsl(270_80%_55%_/_0.15),_transparent_70%)]" />
-        <div className="container mx-auto px-4 py-20 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h1 className="font-display text-4xl md:text-6xl font-bold mb-4 neon-text-green text-primary">
-              {t("heroTitle")}
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8">
-              {t("heroSubtitle")}
-            </p>
-            <div className="flex items-center justify-center gap-4">
-              {user ? (
-                <Button
-                  size="lg"
-                  onClick={() => navigate("/games/slots")}
-                  className="font-display text-lg neon-glow-green px-8"
-                >
-                  {t("playNow")}
-                </Button>
-              ) : (
-                <>
+      {/* Marquee Ticker */}
+      <div className="bg-card border-b border-border overflow-hidden">
+        <div className="py-2 flex">
+          <div className="marquee-scroll flex gap-12 whitespace-nowrap">
+            {[...marqueeMessages, ...marqueeMessages].map((msg, i) => (
+              <span key={i} className="text-sm text-secondary font-medium">{msg}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Hero Banner Carousel */}
+      <section className="relative overflow-hidden">
+        <div className={`bg-gradient-to-r ${bannerSlides[currentSlide].gradient} transition-all duration-700`}>
+          <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-center max-w-3xl mx-auto"
+            >
+              <h1 className="font-display text-3xl md:text-5xl font-black mb-3 text-secondary neon-text-gold">
+                {language === "bn" ? bannerSlides[currentSlide].titleBn : bannerSlides[currentSlide].title}
+              </h1>
+              <p className="text-base md:text-lg text-primary-foreground/90 mb-6">
+                {language === "bn" ? bannerSlides[currentSlide].subtitleBn : bannerSlides[currentSlide].subtitle}
+              </p>
+              <div className="flex items-center justify-center gap-3">
+                {user ? (
                   <Button
                     size="lg"
-                    onClick={() => navigate("/register")}
-                    className="font-display text-lg neon-glow-green px-8"
+                    onClick={() => navigate("/games/slots")}
+                    className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-display text-lg rounded-full px-8 neon-glow-gold"
                   >
-                    {t("joinNow")}
+                    {t("playNow")}
                   </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    onClick={() => navigate("/login")}
-                    className="font-display text-lg px-8"
-                  >
-                    {t("login")}
-                  </Button>
-                </>
-              )}
-            </div>
-          </motion.div>
+                ) : (
+                  <>
+                    <Button
+                      size="lg"
+                      onClick={() => navigate("/register")}
+                      className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-display text-lg rounded-full px-8 neon-glow-gold"
+                    >
+                      {t("joinNow")}
+                    </Button>
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      onClick={() => navigate("/login")}
+                      className="border-primary-foreground/40 text-primary-foreground hover:bg-primary/40 font-display text-lg rounded-full px-8"
+                    >
+                      {t("login")}
+                    </Button>
+                  </>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+        {/* Slide indicators */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+          {bannerSlides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentSlide(i)}
+              className={`w-2.5 h-2.5 rounded-full transition-all ${i === currentSlide ? "bg-secondary w-6" : "bg-primary-foreground/40"}`}
+            />
+          ))}
         </div>
       </section>
 
-      {/* Promotions Banner */}
-      <section className="bg-gradient-to-r from-secondary/20 via-primary/10 to-accent/20 border-y border-border">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-center gap-3 text-sm">
-            <Gift className="h-5 w-5 text-accent animate-pulse-neon" />
-            <span className="text-accent font-semibold">🎁 Welcome Bonus: 100% up to ৳10,000 on first deposit!</span>
-            <Gift className="h-5 w-5 text-accent animate-pulse-neon" />
+      {/* Jackpot Counter */}
+      <section className="bg-gradient-to-r from-card via-primary/20 to-card border-y border-border py-4">
+        <div className="container mx-auto px-4 flex items-center justify-center gap-4">
+          <Crown className="h-8 w-8 text-secondary animate-pulse" />
+          <div className="text-center">
+            <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Jackpot</p>
+            <p className="font-display text-2xl md:text-3xl font-black text-secondary neon-text-gold">
+              ৳ 12,458,392
+            </p>
           </div>
+          <Crown className="h-8 w-8 text-secondary animate-pulse" />
         </div>
       </section>
 
       {/* Game Categories */}
-      <section className="container mx-auto px-4 py-12">
-        <h2 className="font-display text-2xl font-bold mb-8 text-center">{t("allGames")}</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <section className="container mx-auto px-4 py-8">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="font-display text-xl font-bold">{t("allGames")}</h2>
+          <Button variant="ghost" size="sm" className="text-secondary hover:text-secondary/80">
+            {language === "bn" ? "সব দেখুন" : "View All"} <ChevronRight className="h-4 w-4 ml-1" />
+          </Button>
+        </div>
+        <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
           {gameCategories.map((cat, i) => (
             <motion.div
               key={cat.key}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: i * 0.08 }}
             >
               <Card
-                className={`cursor-pointer border-border hover:border-primary/50 transition-all ${cat.glow} group`}
+                className="cursor-pointer border-border hover:border-secondary/60 transition-all group bg-gradient-to-b from-card to-muted"
                 onClick={() => navigate(cat.href)}
               >
-                <CardContent className="flex flex-col items-center justify-center p-6 gap-3">
-                  <cat.icon className={`h-10 w-10 ${cat.color} group-hover:scale-110 transition-transform`} />
-                  <span className="font-display text-sm font-semibold">{t(cat.key)}</span>
-                  <span className="text-xs text-muted-foreground">{cat.count} Games</span>
+                <CardContent className="flex flex-col items-center justify-center p-4 gap-2">
+                  <div className="w-12 h-12 rounded-full bg-primary/30 flex items-center justify-center group-hover:bg-primary/50 transition-colors">
+                    <cat.icon className={`h-6 w-6 ${cat.color} group-hover:scale-110 transition-transform`} />
+                  </div>
+                  <span className="font-display text-xs font-semibold text-center">{t(cat.key)}</span>
+                  <span className="text-[10px] text-muted-foreground">{cat.count}</span>
                 </CardContent>
               </Card>
             </motion.div>
@@ -121,25 +210,31 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Featured Games Grid */}
-      <section className="container mx-auto px-4 py-12">
-        <h2 className="font-display text-2xl font-bold mb-8">{t("featuredGames")}</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {/* Hot Games */}
+      <section className="container mx-auto px-4 py-6">
+        <div className="flex items-center gap-2 mb-6">
+          <Flame className="h-5 w-5 text-destructive" />
+          <h2 className="font-display text-xl font-bold">{t("featuredGames")}</h2>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
           {featuredGames.map((game, i) => (
             <motion.div
               key={game.name}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.05 }}
+              transition={{ delay: i * 0.04 }}
             >
-              <Card className="cursor-pointer border-border hover:border-primary/50 transition-all group overflow-hidden">
-                <div className="aspect-[4/3] bg-gradient-to-br from-muted to-card flex items-center justify-center relative">
-                  <Gamepad2 className="h-12 w-12 text-muted-foreground/30" />
+              <Card className="cursor-pointer border-border hover:border-secondary/50 transition-all group overflow-hidden bg-card">
+                <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 via-muted to-card flex items-center justify-center relative">
+                  <Gamepad2 className="h-10 w-10 text-muted-foreground/30" />
                   {game.hot && (
-                    <span className="absolute top-2 right-2 bg-destructive text-destructive-foreground text-[10px] font-bold px-2 py-0.5 rounded-full">
-                      🔥 HOT
+                    <span className="absolute top-2 right-2 bg-destructive text-destructive-foreground text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-0.5">
+                      <Flame className="h-3 w-3" /> HOT
                     </span>
                   )}
+                  <span className="absolute bottom-2 left-2 bg-card/80 text-[10px] font-semibold px-2 py-0.5 rounded text-muted-foreground">
+                    {game.category}
+                  </span>
                 </div>
                 <CardContent className="p-3">
                   <p className="font-semibold text-sm truncate">{game.name}</p>
@@ -151,11 +246,69 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Popular Games */}
+      <section className="container mx-auto px-4 py-6">
+        <div className="flex items-center gap-2 mb-6">
+          <Star className="h-5 w-5 text-secondary" />
+          <h2 className="font-display text-xl font-bold">
+            {language === "bn" ? "জনপ্রিয় গেমস" : "Popular Games"}
+          </h2>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+          {popularGames.map((game, i) => (
+            <motion.div
+              key={game.name}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05 }}
+            >
+              <Card className="cursor-pointer border-border hover:border-secondary/50 transition-all group overflow-hidden bg-card">
+                <div className="aspect-square bg-gradient-to-br from-primary/15 via-muted to-card flex items-center justify-center relative">
+                  <Gamepad2 className="h-8 w-8 text-muted-foreground/20" />
+                  {game.hot && (
+                    <span className="absolute top-1.5 right-1.5 bg-destructive text-destructive-foreground text-[9px] font-bold px-1.5 py-0.5 rounded-full">
+                      🔥
+                    </span>
+                  )}
+                </div>
+                <CardContent className="p-2">
+                  <p className="font-semibold text-xs truncate">{game.name}</p>
+                  <p className="text-[10px] text-muted-foreground">{game.provider}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Promotions Section */}
+      <section className="container mx-auto px-4 py-8">
+        <div className="flex items-center gap-2 mb-6">
+          <Gift className="h-5 w-5 text-secondary" />
+          <h2 className="font-display text-xl font-bold">{t("promotions")}</h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-4">
+          {[
+            { title: language === "bn" ? "স্বাগত বোনাস ৳৮,৮৮৮" : "Welcome Bonus ৳8,888", desc: language === "bn" ? "প্রথম জমায় ১০০% বোনাস" : "100% on first deposit" },
+            { title: language === "bn" ? "দৈনিক ক্যাশব্যাক" : "Daily Cashback", desc: language === "bn" ? "প্রতিদিন ৫% পর্যন্ত ক্যাশব্যাক" : "Up to 5% cashback daily" },
+            { title: language === "bn" ? "রেফারেল বোনাস ৳৩০০" : "Referral Bonus ৳300", desc: language === "bn" ? "প্রতি বন্ধু আমন্ত্রণে বোনাস" : "Bonus for every friend invited" },
+          ].map((promo, i) => (
+            <Card key={i} className="border-secondary/30 bg-gradient-to-br from-card to-primary/10 hover:border-secondary/60 transition-all cursor-pointer">
+              <CardContent className="p-5">
+                <Gift className="h-8 w-8 text-secondary mb-3" />
+                <h3 className="font-display text-base font-bold text-secondary mb-1">{promo.title}</h3>
+                <p className="text-sm text-muted-foreground">{promo.desc}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="border-t border-border bg-card/50 py-8">
+      <footer className="border-t border-border bg-card/80 py-8">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p className="font-display text-primary neon-text-green text-lg mb-2">🎰 CASINO</p>
-          <p>© 2024 Casino. All rights reserved. 18+ Gamble responsibly.</p>
+          <p className="font-display text-secondary neon-text-gold text-xl mb-2">BD678</p>
+          <p>© 2025 BD678. All rights reserved. 18+ Gamble responsibly.</p>
         </div>
       </footer>
     </div>
