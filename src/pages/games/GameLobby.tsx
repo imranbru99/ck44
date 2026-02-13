@@ -10,7 +10,7 @@ import { useState } from "react";
 interface GameLobbyProps {
   category: string;
   categoryBn: string;
-  games: { name: string; provider: string; hot?: boolean }[];
+  games: { name: string; provider: string; hot?: boolean; image?: string }[];
 }
 
 const GameLobby = ({ category, categoryBn, games }: GameLobbyProps) => {
@@ -48,8 +48,14 @@ const GameLobby = ({ category, categoryBn, games }: GameLobbyProps) => {
               transition={{ delay: i * 0.03 }}
             >
               <Card className="cursor-pointer border-border hover:border-secondary/50 transition-all group overflow-hidden bg-card">
-                <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 via-muted to-card flex items-center justify-center relative">
-                  <Gamepad2 className="h-10 w-10 text-muted-foreground/30" />
+                <div className="aspect-[4/3] relative overflow-hidden">
+                  {game.image ? (
+                    <img src={game.image} alt={game.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-primary/20 via-muted to-card flex items-center justify-center">
+                      <Gamepad2 className="h-10 w-10 text-muted-foreground/30" />
+                    </div>
+                  )}
                   {game.hot && (
                     <span className="absolute top-2 right-2 bg-destructive text-destructive-foreground text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-0.5">
                       <Flame className="h-3 w-3" /> HOT

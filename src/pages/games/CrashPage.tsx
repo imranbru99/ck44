@@ -1,7 +1,8 @@
 import GameLobby from "./GameLobby";
+import imgAviator from "@/assets/games/aviator.jpg";
 
 const games = [
-  { name: "Aviator", provider: "Spribe", hot: true },
+  { name: "Aviator", provider: "Spribe", hot: true, image: imgAviator },
   { name: "JetX", provider: "SmartSoft", hot: true },
   { name: "Spaceman", provider: "Pragmatic Play" },
   { name: "Cash or Crash", provider: "Evolution", hot: true },
