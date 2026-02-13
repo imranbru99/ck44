@@ -16,6 +16,14 @@ import AdminFinance from "./pages/admin/AdminFinance";
 import ApiSettings from "./pages/admin/ApiSettings";
 import AdminSiteSettings from "./pages/admin/AdminSiteSettings";
 import AdminPlaceholder from "./pages/admin/AdminPlaceholder";
+import SlotsPage from "./pages/games/SlotsPage";
+import LiveCasinoPage from "./pages/games/LiveCasinoPage";
+import CrashPage from "./pages/games/CrashPage";
+import SportsPage from "./pages/games/SportsPage";
+import MiniGamesPage from "./pages/games/MiniGamesPage";
+import Promotions from "./pages/Promotions";
+import Wallet from "./pages/Wallet";
+import Profile from "./pages/Profile";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +39,14 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/games/slots" element={<SlotsPage />} />
+              <Route path="/games/live-casino" element={<LiveCasinoPage />} />
+              <Route path="/games/crash" element={<CrashPage />} />
+              <Route path="/games/sports" element={<SportsPage />} />
+              <Route path="/games/mini" element={<MiniGamesPage />} />
+              <Route path="/promotions" element={<Promotions />} />
+              <Route path="/wallet" element={<Wallet />} />
+              <Route path="/profile" element={<Profile />} />
               
               {/* Admin Routes */}
               <Route path="/admin" element={<AdminLayout />}>
