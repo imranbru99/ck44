@@ -335,7 +335,7 @@ const Index = () => {
       <footer className="border-t border-border bg-card/80 py-8">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
           <p className="font-display text-secondary neon-text-gold text-xl mb-2">CK444</p>
-          <p>© 2025 CK444. All rights reserved. 18+ Gamble responsibly.</p>
+          <p>© 2026 CK444. All rights reserved. 18+ Gamble responsibly.</p>
         </div>
       </footer>
     </div>
