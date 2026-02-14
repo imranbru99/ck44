@@ -16,6 +16,7 @@ import AdminFinance from "./pages/admin/AdminFinance";
 import ApiSettings from "./pages/admin/ApiSettings";
 import AdminSiteSettings from "./pages/admin/AdminSiteSettings";
 import AdminPlaceholder from "./pages/admin/AdminPlaceholder";
+import AdminPopup from "./pages/admin/AdminPopup";
 import SlotsPage from "./pages/games/SlotsPage";
 import LiveCasinoPage from "./pages/games/LiveCasinoPage";
 import CrashPage from "./pages/games/CrashPage";
@@ -57,6 +58,7 @@ const App = () => (
                 <Route path="promotions" element={<AdminPlaceholder title="Promotion Management" />} />
                 <Route path="reports" element={<AdminPlaceholder title="Reports" />} />
                 <Route path="api-settings" element={<ApiSettings />} />
+                <Route path="popup" element={<AdminPopup />} />
                 <Route path="settings" element={<AdminSiteSettings />} />
               </Route>
 

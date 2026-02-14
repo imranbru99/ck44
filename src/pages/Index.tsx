@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Gamepad2, Trophy, TrendingUp, Zap, Star, Gift, Dice1, Crown, Flame, ChevronRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import PromoPopup from "@/components/PromoPopup";
 import { useState, useEffect } from "react";
 
 import bannerWelcome from "@/assets/banner-welcome.jpg";
@@ -107,6 +108,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <PromoPopup />
       <Navbar />
 
       {/* Marquee Ticker */}

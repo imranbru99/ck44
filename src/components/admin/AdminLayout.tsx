@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useNavigate, Outlet, Link, useLocation } from "react-router-dom";
 import { 
   LayoutDashboard, Users, Wallet, Gamepad2, Gift, Settings, 
-  BarChart3, Shield, ChevronLeft, ChevronRight, LogOut, Globe
+  BarChart3, Shield, ChevronLeft, ChevronRight, LogOut, Globe, Image
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -17,6 +17,7 @@ const sidebarItems = [
   { label: "Promotions", icon: Gift, href: "/admin/promotions" },
   { label: "Reports", icon: BarChart3, href: "/admin/reports" },
   { label: "API Settings", icon: Globe, href: "/admin/api-settings" },
+  { label: "Popup", icon: Image, href: "/admin/popup" },
   { label: "Site Settings", icon: Settings, href: "/admin/settings" },
 ];
 
