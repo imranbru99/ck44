@@ -74,7 +74,7 @@ const AdminLayout = () => {
         <div className="p-4 border-b border-border flex items-center justify-between">
           {!collapsed && (
             <Link to="/" className="font-display text-lg font-bold text-primary neon-text-green">
-              🎰 ADMIN
+              🎰 CK444 ADMIN
             </Link>
           )}
           <Button variant="ghost" size="icon" onClick={() => setCollapsed(!collapsed)}>

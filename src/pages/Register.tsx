@@ -44,7 +44,7 @@ const Register = () => {
     <div className="min-h-screen flex items-center justify-center gradient-casino p-4">
       <Card className="w-full max-w-md border-border neon-glow-purple">
         <CardHeader className="text-center">
-          <div className="font-display text-2xl font-bold text-primary neon-text-green mb-2">🎰 CASINO</div>
+          <div className="font-display text-2xl font-bold text-primary neon-text-green mb-2">🎰 CK444</div>
           <CardTitle className="font-display text-xl">{t("register")}</CardTitle>
         </CardHeader>
         <CardContent>
