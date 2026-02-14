@@ -123,72 +123,100 @@ const Index = () => {
       </div>
 
       {/* Hero Banner Carousel with Images */}
-      <section className="relative overflow-hidden">
-        <div className="relative h-[200px] sm:h-[280px] md:h-[380px] lg:h-[420px]">
-          {bannerSlides.map((slide, i) => (
-            <motion.div
-              key={i}
-              className="absolute inset-0"
-              initial={false}
-              animate={{ opacity: i === currentSlide ? 1 : 0 }}
-              transition={{ duration: 0.7 }}
-              style={{ pointerEvents: i === currentSlide ? "auto" : "none" }}
-            >
-              <img
-                src={slide.image}
-                alt={slide.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent" />
-              <div className="absolute inset-0 flex flex-col items-center justify-end pb-8 md:pb-12 px-4">
-                <h1 className="font-display text-xl sm:text-2xl md:text-4xl font-black mb-1 text-secondary neon-text-gold text-center drop-shadow-lg">
-                  {language === "bn" ? slide.titleBn : slide.title}
-                </h1>
-                <p className="text-sm md:text-base text-primary-foreground/90 mb-4 text-center drop-shadow">
-                  {language === "bn" ? slide.subtitleBn : slide.subtitle}
-                </p>
-                <div className="flex items-center justify-center gap-3">
-                  {user ? (
-                    <Button
-                      size="lg"
-                      onClick={() => navigate("/games/slots")}
-                      className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-display text-base rounded-full px-8 neon-glow-gold"
-                    >
-                      {t("playNow")}
-                    </Button>
-                  ) : (
-                    <>
+      <section className="relative px-2 sm:px-4 md:px-6 py-3 md:py-4 bg-gradient-to-b from-background to-card">
+        <div className="relative rounded-xl overflow-hidden border-2 border-secondary/60 shadow-[0_0_20px_hsl(40_100%_50%/0.25),inset_0_0_20px_hsl(40_100%_50%/0.05)]">
+          {/* Gold corner accents */}
+          <div className="absolute top-0 left-0 w-8 h-8 md:w-12 md:h-12 border-t-[3px] border-l-[3px] border-secondary rounded-tl-xl z-10" />
+          <div className="absolute top-0 right-0 w-8 h-8 md:w-12 md:h-12 border-t-[3px] border-r-[3px] border-secondary rounded-tr-xl z-10" />
+          <div className="absolute bottom-0 left-0 w-8 h-8 md:w-12 md:h-12 border-b-[3px] border-l-[3px] border-secondary rounded-bl-xl z-10" />
+          <div className="absolute bottom-0 right-0 w-8 h-8 md:w-12 md:h-12 border-b-[3px] border-r-[3px] border-secondary rounded-br-xl z-10" />
+
+          <div className="relative h-[180px] sm:h-[260px] md:h-[360px] lg:h-[440px]">
+            {bannerSlides.map((slide, i) => (
+              <motion.div
+                key={i}
+                className="absolute inset-0"
+                initial={false}
+                animate={{ opacity: i === currentSlide ? 1 : 0, scale: i === currentSlide ? 1 : 1.05 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                style={{ pointerEvents: i === currentSlide ? "auto" : "none" }}
+              >
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 flex flex-col items-start justify-end p-4 sm:p-6 md:p-10 lg:p-14">
+                  <motion.h1
+                    key={`title-${currentSlide}`}
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="font-display text-lg sm:text-2xl md:text-4xl lg:text-5xl font-black mb-1 md:mb-2 text-secondary neon-text-gold drop-shadow-lg max-w-[80%] md:max-w-[60%] leading-tight"
+                  >
+                    {language === "bn" ? slide.titleBn : slide.title}
+                  </motion.h1>
+                  <motion.p
+                    key={`sub-${currentSlide}`}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.35 }}
+                    className="text-xs sm:text-sm md:text-base text-foreground/90 mb-3 md:mb-5 drop-shadow max-w-[75%] md:max-w-[50%]"
+                  >
+                    {language === "bn" ? slide.subtitleBn : slide.subtitle}
+                  </motion.p>
+                  <motion.div
+                    key={`btn-${currentSlide}`}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.5 }}
+                    className="flex items-center gap-3"
+                  >
+                    {user ? (
                       <Button
                         size="lg"
-                        onClick={() => navigate("/register")}
-                        className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-display text-base rounded-full px-8 neon-glow-gold"
+                        onClick={() => navigate("/games/slots")}
+                        className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-display text-sm md:text-base rounded-full px-6 md:px-8 neon-glow-gold"
                       >
-                        {t("joinNow")}
+                        {t("playNow")}
                       </Button>
-                      <Button
-                        size="lg"
-                        variant="outline"
-                        onClick={() => navigate("/login")}
-                        className="border-primary-foreground/40 text-primary-foreground hover:bg-primary/40 font-display text-base rounded-full px-8"
-                      >
-                        {t("login")}
-                      </Button>
-                    </>
-                  )}
+                    ) : (
+                      <>
+                        <Button
+                          size="lg"
+                          onClick={() => navigate("/register")}
+                          className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-display text-sm md:text-base rounded-full px-6 md:px-8 neon-glow-gold"
+                        >
+                          {t("joinNow")}
+                        </Button>
+                        <Button
+                          size="lg"
+                          variant="outline"
+                          onClick={() => navigate("/login")}
+                          className="border-foreground/30 text-foreground hover:bg-primary/40 font-display text-sm md:text-base rounded-full px-6 md:px-8"
+                        >
+                          {t("login")}
+                        </Button>
+                      </>
+                    )}
+                  </motion.div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-        {/* Slide indicators */}
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-          {bannerSlides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentSlide(i)}
-              className={`w-2.5 h-2.5 rounded-full transition-all ${i === currentSlide ? "bg-secondary w-6" : "bg-primary-foreground/40"}`}
-            />
-          ))}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Slide indicators - inside the frame */}
+          <div className="absolute bottom-3 md:bottom-4 right-4 md:right-6 flex gap-1.5 z-20">
+            {bannerSlides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentSlide(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${i === currentSlide ? "bg-secondary w-6 neon-glow-gold" : "bg-foreground/30 w-2 hover:bg-foreground/50"}`}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
