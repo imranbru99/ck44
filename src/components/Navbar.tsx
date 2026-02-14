@@ -33,7 +33,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <span className="font-display text-2xl font-black text-secondary neon-text-gold tracking-wider">
-            BD678
+            CK444
           </span>
         </Link>
 

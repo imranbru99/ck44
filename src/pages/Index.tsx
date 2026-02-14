@@ -86,8 +86,8 @@ const featuredGames = [
 const popularGames = [
   { name: "Big Bass Bonanza", provider: "Pragmatic Play", hot: true, image: imgBigBass },
   { name: "Starburst", provider: "NetEnt", hot: true, image: imgStarburst },
-  { name: "Cricket Betting", provider: "BD678 Sports", hot: true, image: imgCricket },
-  { name: "Football", provider: "BD678 Sports", hot: false, image: imgFootball },
+  { name: "Cricket Betting", provider: "CK444 Sports", hot: true, image: imgCricket },
+  { name: "Football", provider: "CK444 Sports", hot: false, image: imgFootball },
   { name: "Sweet Bonanza", provider: "Pragmatic Play", hot: true, image: imgSweetBonanza },
   { name: "Gates of Olympus", provider: "Pragmatic Play", hot: false, image: imgGatesOfOlympus },
 ];
@@ -334,8 +334,8 @@ const Index = () => {
       {/* Footer */}
       <footer className="border-t border-border bg-card/80 py-8">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p className="font-display text-secondary neon-text-gold text-xl mb-2">BD678</p>
-          <p>© 2025 BD678. All rights reserved. 18+ Gamble responsibly.</p>
+          <p className="font-display text-secondary neon-text-gold text-xl mb-2">CK444</p>
+          <p>© 2025 CK444. All rights reserved. 18+ Gamble responsibly.</p>
         </div>
       </footer>
     </div>
