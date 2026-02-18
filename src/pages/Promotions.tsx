@@ -1,5 +1,4 @@
 import { useLanguage } from "@/i18n/LanguageContext";
-import Navbar from "@/components/Navbar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Gift, Crown, Users, Calendar, Percent } from "lucide-react";
 import { motion } from "framer-motion";
@@ -16,34 +15,31 @@ const promos = [
 const Promotions = () => {
   const { language } = useLanguage();
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="font-display text-2xl md:text-3xl font-black text-secondary neon-text-gold mb-8">
-          {language === "bn" ? "প্রমোশন" : "Promotions"}
-        </h1>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {promos.map((promo, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.06 }}
-            >
-              <Card className="border-secondary/30 bg-gradient-to-br from-card to-primary/10 hover:border-secondary/60 transition-all cursor-pointer h-full">
-                <CardContent className="p-6">
-                  <promo.icon className="h-10 w-10 text-secondary mb-4" />
-                  <h3 className="font-display text-lg font-bold text-secondary mb-2">
-                    {language === "bn" ? promo.titleBn : promo.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {language === "bn" ? promo.descBn : promo.desc}
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+    <div className="px-4 py-6">
+      <h1 className="font-display text-2xl md:text-3xl font-black text-secondary neon-text-gold mb-8">
+        {language === "bn" ? "প্রমোশন" : "Promotions"}
+      </h1>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {promos.map((promo, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.06 }}
+          >
+            <Card className="border-secondary/30 bg-gradient-to-br from-card to-primary/10 hover:border-secondary/60 transition-all cursor-pointer h-full">
+              <CardContent className="p-6">
+                <promo.icon className="h-10 w-10 text-secondary mb-4" />
+                <h3 className="font-display text-lg font-bold text-secondary mb-2">
+                  {language === "bn" ? promo.titleBn : promo.title}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {language === "bn" ? promo.descBn : promo.desc}
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
       </div>
     </div>
   );

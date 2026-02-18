@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 
 const mainNav = [
   { icon: Home, label: "Home", labelBn: "হোম", href: "/" },
-  { icon: Flame, label: "Hot Games", labelBn: "হট গেমস", href: "#hot" },
+  { icon: Flame, label: "Hot Games", labelBn: "হট গেমস", href: "/games/hot" },
   { icon: Gamepad2, label: "Slots", labelBn: "স্লটস", href: "/games/slots" },
   { icon: Trophy, label: "Live Casino", labelBn: "লাইভ ক্যাসিনো", href: "/games/live-casino" },
   { icon: Zap, label: "Crash", labelBn: "ক্র্যাশ", href: "/games/crash" },
@@ -23,10 +23,10 @@ const mainNav = [
 ];
 
 const accountNav = [
-  { icon: Crown, label: "VIP", labelBn: "ভিআইপি", href: "#vip" },
+  { icon: Crown, label: "VIP", labelBn: "ভিআইপি", href: "/vip" },
   { icon: Wallet, label: "Wallet", labelBn: "ওয়ালেট", href: "/wallet" },
   { icon: User, label: "My Account", labelBn: "আমার অ্যাকাউন্ট", href: "/profile" },
-  { icon: Headphones, label: "Support", labelBn: "সাপোর্ট", href: "#support" },
+  { icon: Headphones, label: "Support", labelBn: "সাপোর্ট", href: "/support" },
 ];
 
 const PlayerSidebar = () => {
