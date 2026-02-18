@@ -5,9 +5,6 @@ import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Gamepad2, Trophy, TrendingUp, Zap, Star, Gift, Crown, Flame, ChevronRight, Fish, Target } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import PlayerSidebar from "@/components/PlayerSidebar";
-import PromoPopup from "@/components/PromoPopup";
 import { useState, useEffect, useRef } from "react";
 
 import bannerWelcome from "@/assets/banner-welcome.jpg";
@@ -262,119 +259,86 @@ const Index = () => {
   // LOGGED IN LAYOUT
   if (user) {
     return (
-      <div className="min-h-screen bg-background">
-        <PromoPopup />
-        <Navbar />
+      <>
+        <BannerCarousel />
 
-        {/* Marquee */}
-        <div className="bg-card border-b border-border overflow-hidden">
-          <div className="py-1.5 flex">
-            <div className="marquee-scroll flex gap-12 whitespace-nowrap">
-              {[...marqueeMessages, ...marqueeMessages].map((msg, i) => (
-                <span key={i} className="text-xs text-secondary font-medium">{msg}</span>
-              ))}
+        {/* Quick category pills */}
+        <div className="flex gap-2 px-3 py-3 overflow-x-auto scrollbar-hide">
+          {[
+            { icon: Flame, label: language === "bn" ? "হট" : "Hot", color: "bg-destructive/20 text-destructive border-destructive/30" },
+            { icon: Gamepad2, label: language === "bn" ? "স্লটস" : "Slots", color: "bg-secondary/15 text-secondary border-secondary/30" },
+            { icon: Trophy, label: language === "bn" ? "লাইভ" : "Live", color: "bg-primary/20 text-primary-foreground border-primary/30" },
+            { icon: Zap, label: language === "bn" ? "ক্র্যাশ" : "Crash", color: "bg-accent/15 text-accent border-accent/30" },
+            { icon: TrendingUp, label: language === "bn" ? "স্পোর্টস" : "Sports", color: "bg-neon-green/15 text-neon-green border-neon-green/30" },
+            { icon: Star, label: language === "bn" ? "মিনি" : "Mini", color: "bg-neon-purple/15 text-neon-purple border-neon-purple/30" },
+          ].map((cat) => (
+            <button key={cat.label} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border shrink-0 transition-all hover:scale-105 ${cat.color}`}>
+              <cat.icon className="h-3.5 w-3.5" />
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Game sections */}
+        <div className="px-3">
+          <GameRow title="Hot Games" titleBn="হট গেমস" icon={Flame} games={hotGames} href="/games/hot" iconColor="text-destructive" />
+          <GameRow title="Slots" titleBn="স্লটস" icon={Gamepad2} games={slotGames} href="/games/slots" />
+          <GameRow title="Live Casino" titleBn="লাইভ ক্যাসিনো" icon={Trophy} games={liveCasinoGames} href="/games/live-casino" iconColor="text-neon-gold" />
+          <GameRow title="Crash Games" titleBn="ক্র্যাশ গেমস" icon={Zap} games={crashGames} href="/games/crash" iconColor="text-accent" />
+          <GameRow title="Sports" titleBn="স্পোর্টস" icon={TrendingUp} games={sportsGames} href="/games/sports" iconColor="text-neon-green" />
+        </div>
+
+        {/* Jackpot */}
+        <section className="mx-3 my-6 rounded-xl bg-gradient-to-r from-secondary/10 via-secondary/20 to-secondary/10 border border-secondary/30 py-5">
+          <div className="flex items-center justify-center gap-4">
+            <Crown className="h-8 w-8 text-secondary animate-pulse" />
+            <div className="text-center">
+              <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Jackpot</p>
+              <p className="font-display text-2xl md:text-3xl font-black text-secondary neon-text-gold">
+                ৳ 420,704,740.30
+              </p>
             </div>
+            <Crown className="h-8 w-8 text-secondary animate-pulse" />
           </div>
-        </div>
+        </section>
 
-        <div className="flex">
-          <PlayerSidebar />
-          <main className="flex-1 min-w-0 overflow-hidden">
-            <BannerCarousel />
+        {/* Promos */}
+        <section className="px-3 pb-6">
+          <div className="flex items-center gap-2 mb-3">
+            <Gift className="h-5 w-5 text-secondary" />
+            <h2 className="font-display text-base md:text-lg font-bold">{t("promotions")}</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {[
+              { title: language === "bn" ? "স্বাগত বোনাস ৳৮,৮৮৮" : "Welcome Bonus ৳8,888", desc: language === "bn" ? "প্রথম জমায় ১০০% বোনাস" : "100% on first deposit" },
+              { title: language === "bn" ? "দৈনিক ক্যাশব্যাক" : "Daily Cashback", desc: language === "bn" ? "প্রতিদিন ৫% পর্যন্ত ক্যাশব্যাক" : "Up to 5% cashback daily" },
+              { title: language === "bn" ? "রেফারেল বোনাস ৳৩০০" : "Referral Bonus ৳300", desc: language === "bn" ? "প্রতি বন্ধু আমন্ত্রণে বোনাস" : "Bonus for every friend invited" },
+            ].map((promo, i) => (
+              <Card key={i} className="border-secondary/30 bg-gradient-to-br from-card to-primary/10 hover:border-secondary/60 transition-all cursor-pointer">
+                <CardContent className="p-4">
+                  <Gift className="h-6 w-6 text-secondary mb-2" />
+                  <h3 className="font-display text-sm font-bold text-secondary mb-1">{promo.title}</h3>
+                  <p className="text-xs text-muted-foreground">{promo.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
 
-            {/* Quick category pills */}
-            <div className="flex gap-2 px-3 py-3 overflow-x-auto scrollbar-hide">
-              {[
-                { icon: Flame, label: language === "bn" ? "হট" : "Hot", color: "bg-destructive/20 text-destructive border-destructive/30" },
-                { icon: Gamepad2, label: language === "bn" ? "স্লটস" : "Slots", color: "bg-secondary/15 text-secondary border-secondary/30" },
-                { icon: Trophy, label: language === "bn" ? "লাইভ" : "Live", color: "bg-primary/20 text-primary-foreground border-primary/30" },
-                { icon: Zap, label: language === "bn" ? "ক্র্যাশ" : "Crash", color: "bg-accent/15 text-accent border-accent/30" },
-                { icon: TrendingUp, label: language === "bn" ? "স্পোর্টস" : "Sports", color: "bg-neon-green/15 text-neon-green border-neon-green/30" },
-                { icon: Star, label: language === "bn" ? "মিনি" : "Mini", color: "bg-neon-purple/15 text-neon-purple border-neon-purple/30" },
-              ].map((cat) => (
-                <button key={cat.label} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border shrink-0 transition-all hover:scale-105 ${cat.color}`}>
-                  <cat.icon className="h-3.5 w-3.5" />
-                  {cat.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Game sections */}
-            <div className="px-3">
-              <GameRow title="Hot Games" titleBn="হট গেমস" icon={Flame} games={hotGames} href="#hot" iconColor="text-destructive" />
-              <GameRow title="Slots" titleBn="স্লটস" icon={Gamepad2} games={slotGames} href="/games/slots" />
-              <GameRow title="Live Casino" titleBn="লাইভ ক্যাসিনো" icon={Trophy} games={liveCasinoGames} href="/games/live-casino" iconColor="text-neon-gold" />
-              <GameRow title="Crash Games" titleBn="ক্র্যাশ গেমস" icon={Zap} games={crashGames} href="/games/crash" iconColor="text-accent" />
-              <GameRow title="Sports" titleBn="স্পোর্টস" icon={TrendingUp} games={sportsGames} href="/games/sports" iconColor="text-neon-green" />
-            </div>
-
-            {/* Jackpot */}
-            <section className="mx-3 my-6 rounded-xl bg-gradient-to-r from-secondary/10 via-secondary/20 to-secondary/10 border border-secondary/30 py-5">
-              <div className="flex items-center justify-center gap-4">
-                <Crown className="h-8 w-8 text-secondary animate-pulse" />
-                <div className="text-center">
-                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Jackpot</p>
-                  <p className="font-display text-2xl md:text-3xl font-black text-secondary neon-text-gold">
-                    ৳ 420,704,740.30
-                  </p>
-                </div>
-                <Crown className="h-8 w-8 text-secondary animate-pulse" />
-              </div>
-            </section>
-
-            {/* Promos */}
-            <section className="px-3 pb-6">
-              <div className="flex items-center gap-2 mb-3">
-                <Gift className="h-5 w-5 text-secondary" />
-                <h2 className="font-display text-base md:text-lg font-bold">{t("promotions")}</h2>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                {[
-                  { title: language === "bn" ? "স্বাগত বোনাস ৳৮,৮৮৮" : "Welcome Bonus ৳8,888", desc: language === "bn" ? "প্রথম জমায় ১০০% বোনাস" : "100% on first deposit" },
-                  { title: language === "bn" ? "দৈনিক ক্যাশব্যাক" : "Daily Cashback", desc: language === "bn" ? "প্রতিদিন ৫% পর্যন্ত ক্যাশব্যাক" : "Up to 5% cashback daily" },
-                  { title: language === "bn" ? "রেফারেল বোনাস ৳৩০০" : "Referral Bonus ৳300", desc: language === "bn" ? "প্রতি বন্ধু আমন্ত্রণে বোনাস" : "Bonus for every friend invited" },
-                ].map((promo, i) => (
-                  <Card key={i} className="border-secondary/30 bg-gradient-to-br from-card to-primary/10 hover:border-secondary/60 transition-all cursor-pointer">
-                    <CardContent className="p-4">
-                      <Gift className="h-6 w-6 text-secondary mb-2" />
-                      <h3 className="font-display text-sm font-bold text-secondary mb-1">{promo.title}</h3>
-                      <p className="text-xs text-muted-foreground">{promo.desc}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </section>
-
-            {/* Footer */}
-            <footer className="border-t border-border bg-card/80 py-6">
-              <div className="text-center text-sm text-muted-foreground">
-                <p className="font-display text-secondary neon-text-gold text-lg mb-1">CK444</p>
-                <p className="text-xs">© 2026 CK444. All rights reserved. 18+ Gamble responsibly.</p>
-              </div>
-            </footer>
-          </main>
-        </div>
-      </div>
+        {/* Footer */}
+        <footer className="border-t border-border bg-card/80 py-6">
+          <div className="text-center text-sm text-muted-foreground">
+            <p className="font-display text-secondary neon-text-gold text-lg mb-1">CK444</p>
+            <p className="text-xs">© 2026 CK444. All rights reserved. 18+ Gamble responsibly.</p>
+          </div>
+        </footer>
+      </>
     );
   }
 
-  // GUEST LAYOUT (unchanged logic)
+  // GUEST LAYOUT
   return (
-    <div className="min-h-screen bg-background">
-      <PromoPopup />
-      <Navbar />
-
-      {/* Marquee */}
-      <div className="bg-card border-b border-border overflow-hidden">
-        <div className="py-2 flex">
-          <div className="marquee-scroll flex gap-12 whitespace-nowrap">
-            {[...marqueeMessages, ...marqueeMessages].map((msg, i) => (
-              <span key={i} className="text-sm text-secondary font-medium">{msg}</span>
-            ))}
-          </div>
-        </div>
-      </div>
-
+    <>
       <BannerCarousel />
 
       {/* Jackpot Counter */}
@@ -519,7 +483,7 @@ const Index = () => {
           <p>© 2026 CK444. All rights reserved. 18+ Gamble responsibly.</p>
         </div>
       </footer>
-    </div>
+    </>
   );
 };
 

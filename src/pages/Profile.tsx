@@ -1,6 +1,5 @@
 import { useLanguage } from "@/i18n/LanguageContext";
 import { useAuth } from "@/hooks/useAuth";
-import Navbar from "@/components/Navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -94,104 +93,101 @@ const Profile = () => {
   if (loading) return null;
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <div className="container mx-auto px-4 py-8 max-w-lg">
-        <h1 className="font-display text-2xl font-black text-secondary neon-text-gold mb-6">
-          {language === "bn" ? "প্রোফাইল" : "Profile"}
-        </h1>
+    <div className="px-4 py-6 max-w-lg mx-auto">
+      <h1 className="font-display text-2xl font-black text-secondary neon-text-gold mb-6">
+        {language === "bn" ? "প্রোফাইল" : "Profile"}
+      </h1>
 
-        {/* Avatar card */}
-        <Card className="border-secondary/30 bg-gradient-to-br from-card to-primary/10 mb-6">
-          <CardContent className="p-6 flex flex-col items-center">
-            <div className="w-20 h-20 rounded-full bg-primary/30 flex items-center justify-center mb-4">
-              <User className="h-10 w-10 text-secondary" />
-            </div>
-            <p className="font-semibold text-lg">{displayName || user?.email}</p>
-            <p className="text-xs text-muted-foreground mt-1">
-              {language === "bn" ? "সদস্য" : "Member"}
-            </p>
-          </CardContent>
-        </Card>
+      {/* Avatar card */}
+      <Card className="border-secondary/30 bg-gradient-to-br from-card to-primary/10 mb-6">
+        <CardContent className="p-6 flex flex-col items-center">
+          <div className="w-20 h-20 rounded-full bg-primary/30 flex items-center justify-center mb-4">
+            <User className="h-10 w-10 text-secondary" />
+          </div>
+          <p className="font-semibold text-lg">{displayName || user?.email}</p>
+          <p className="text-xs text-muted-foreground mt-1">
+            {language === "bn" ? "সদস্য" : "Member"}
+          </p>
+        </CardContent>
+      </Card>
 
-        {/* Edit Profile */}
-        <Card className="border-border mb-6">
-          <CardHeader>
-            <CardTitle className="text-sm">{language === "bn" ? "প্রোফাইল সম্পাদনা" : "Edit Profile"}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label className="text-xs flex items-center gap-1.5"><Mail className="h-3.5 w-3.5" /> {language === "bn" ? "ইমেইল" : "Email"}</Label>
-              <Input value={user?.email || ""} disabled className="bg-muted/50 text-muted-foreground" />
-            </div>
-            <div className="space-y-2">
-              <Label className="text-xs flex items-center gap-1.5"><User className="h-3.5 w-3.5" /> {language === "bn" ? "নাম" : "Display Name"}</Label>
-              <Input
-                value={displayName}
-                onChange={(e) => setDisplayName(e.target.value)}
-                placeholder={language === "bn" ? "আপনার নাম" : "Your name"}
-                maxLength={100}
-                disabled={profileLoading}
-                className="bg-card"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label className="text-xs flex items-center gap-1.5"><Phone className="h-3.5 w-3.5" /> {language === "bn" ? "ফোন" : "Phone"}</Label>
-              <Input
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder={language === "bn" ? "ফোন নম্বর" : "Phone number"}
-                maxLength={20}
-                disabled={profileLoading}
-                className="bg-card"
-              />
-            </div>
-            <div className="flex items-center gap-3 text-xs text-muted-foreground">
-              <Shield className="h-4 w-4" />
-              <span>KYC: {language === "bn" ? "অপেক্ষমাণ" : "Pending"}</span>
-            </div>
-            <Button onClick={handleSaveProfile} disabled={saving || profileLoading} className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold">
-              {saving ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Save className="h-4 w-4 mr-2" />}
-              {language === "bn" ? "সংরক্ষণ" : "Save Changes"}
-            </Button>
-          </CardContent>
-        </Card>
+      {/* Edit Profile */}
+      <Card className="border-border mb-6">
+        <CardHeader>
+          <CardTitle className="text-sm">{language === "bn" ? "প্রোফাইল সম্পাদনা" : "Edit Profile"}</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-2">
+            <Label className="text-xs flex items-center gap-1.5"><Mail className="h-3.5 w-3.5" /> {language === "bn" ? "ইমেইল" : "Email"}</Label>
+            <Input value={user?.email || ""} disabled className="bg-muted/50 text-muted-foreground" />
+          </div>
+          <div className="space-y-2">
+            <Label className="text-xs flex items-center gap-1.5"><User className="h-3.5 w-3.5" /> {language === "bn" ? "নাম" : "Display Name"}</Label>
+            <Input
+              value={displayName}
+              onChange={(e) => setDisplayName(e.target.value)}
+              placeholder={language === "bn" ? "আপনার নাম" : "Your name"}
+              maxLength={100}
+              disabled={profileLoading}
+              className="bg-card"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="text-xs flex items-center gap-1.5"><Phone className="h-3.5 w-3.5" /> {language === "bn" ? "ফোন" : "Phone"}</Label>
+            <Input
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder={language === "bn" ? "ফোন নম্বর" : "Phone number"}
+              maxLength={20}
+              disabled={profileLoading}
+              className="bg-card"
+            />
+          </div>
+          <div className="flex items-center gap-3 text-xs text-muted-foreground">
+            <Shield className="h-4 w-4" />
+            <span>KYC: {language === "bn" ? "অপেক্ষমাণ" : "Pending"}</span>
+          </div>
+          <Button onClick={handleSaveProfile} disabled={saving || profileLoading} className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold">
+            {saving ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Save className="h-4 w-4 mr-2" />}
+            {language === "bn" ? "সংরক্ষণ" : "Save Changes"}
+          </Button>
+        </CardContent>
+      </Card>
 
-        {/* Change Password */}
-        <Card className="border-border">
-          <CardHeader>
-            <CardTitle className="text-sm flex items-center gap-2"><Lock className="h-4 w-4" /> {language === "bn" ? "পাসওয়ার্ড পরিবর্তন" : "Change Password"}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label className="text-xs">{language === "bn" ? "নতুন পাসওয়ার্ড" : "New Password"}</Label>
-              <Input
-                type="password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                placeholder="••••••••"
-                maxLength={128}
-                className="bg-card"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label className="text-xs">{language === "bn" ? "পাসওয়ার্ড নিশ্চিত করুন" : "Confirm Password"}</Label>
-              <Input
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="••••••••"
-                maxLength={128}
-                className="bg-card"
-              />
-            </div>
-            <Button onClick={handleChangePassword} disabled={changingPassword || !newPassword} variant="outline" className="w-full border-secondary text-secondary hover:bg-secondary/10 font-bold">
-              {changingPassword ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Lock className="h-4 w-4 mr-2" />}
-              {language === "bn" ? "পাসওয়ার্ড পরিবর্তন করুন" : "Change Password"}
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
+      {/* Change Password */}
+      <Card className="border-border">
+        <CardHeader>
+          <CardTitle className="text-sm flex items-center gap-2"><Lock className="h-4 w-4" /> {language === "bn" ? "পাসওয়ার্ড পরিবর্তন" : "Change Password"}</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-2">
+            <Label className="text-xs">{language === "bn" ? "নতুন পাসওয়ার্ড" : "New Password"}</Label>
+            <Input
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              placeholder="••••••••"
+              maxLength={128}
+              className="bg-card"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="text-xs">{language === "bn" ? "পাসওয়ার্ড নিশ্চিত করুন" : "Confirm Password"}</Label>
+            <Input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="••••••••"
+              maxLength={128}
+              className="bg-card"
+            />
+          </div>
+          <Button onClick={handleChangePassword} disabled={changingPassword || !newPassword} variant="outline" className="w-full border-secondary text-secondary hover:bg-secondary/10 font-bold">
+            {changingPassword ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Lock className="h-4 w-4 mr-2" />}
+            {language === "bn" ? "পাসওয়ার্ড পরিবর্তন করুন" : "Change Password"}
+          </Button>
+        </CardContent>
+      </Card>
     </div>
   );
 };

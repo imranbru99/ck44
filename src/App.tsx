@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import { AuthProvider } from "@/hooks/useAuth";
+import PlayerLayout from "./components/PlayerLayout";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -22,9 +23,12 @@ import LiveCasinoPage from "./pages/games/LiveCasinoPage";
 import CrashPage from "./pages/games/CrashPage";
 import SportsPage from "./pages/games/SportsPage";
 import MiniGamesPage from "./pages/games/MiniGamesPage";
+import HotGamesPage from "./pages/HotGamesPage";
 import Promotions from "./pages/Promotions";
 import Wallet from "./pages/Wallet";
 import Profile from "./pages/Profile";
+import VipPage from "./pages/VipPage";
+import SupportPage from "./pages/SupportPage";
 
 const queryClient = new QueryClient();
 
@@ -37,18 +41,25 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Index />} />
+              {/* Player routes with persistent sidebar */}
+              <Route element={<PlayerLayout />}>
+                <Route path="/" element={<Index />} />
+                <Route path="/games/slots" element={<SlotsPage />} />
+                <Route path="/games/live-casino" element={<LiveCasinoPage />} />
+                <Route path="/games/crash" element={<CrashPage />} />
+                <Route path="/games/sports" element={<SportsPage />} />
+                <Route path="/games/mini" element={<MiniGamesPage />} />
+                <Route path="/games/hot" element={<HotGamesPage />} />
+                <Route path="/promotions" element={<Promotions />} />
+                <Route path="/wallet" element={<Wallet />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/vip" element={<VipPage />} />
+                <Route path="/support" element={<SupportPage />} />
+              </Route>
+
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/games/slots" element={<SlotsPage />} />
-              <Route path="/games/live-casino" element={<LiveCasinoPage />} />
-              <Route path="/games/crash" element={<CrashPage />} />
-              <Route path="/games/sports" element={<SportsPage />} />
-              <Route path="/games/mini" element={<MiniGamesPage />} />
-              <Route path="/promotions" element={<Promotions />} />
-              <Route path="/wallet" element={<Wallet />} />
-              <Route path="/profile" element={<Profile />} />
-              
+
               {/* Admin Routes */}
               <Route path="/admin" element={<AdminLayout />}>
                 <Route index element={<AdminDashboard />} />
