@@ -6,17 +6,21 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { Phone, Lock } from "lucide-react";
+
+const phoneToEmail = (phone: string) => `${phone.replace(/[^0-9]/g, "")}@ck444.app`;
 
 const Login = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    const email = phoneToEmail(phone);
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     setLoading(false);
     if (error) {
@@ -37,17 +41,22 @@ const Login = () => {
         <CardContent>
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="text-sm font-medium text-muted-foreground">{t("email")}</label>
+              <label className="text-sm font-medium text-muted-foreground flex items-center gap-1">
+                <Phone className="h-3.5 w-3.5" /> {t("phone") || "Phone Number"}
+              </label>
               <Input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="tel"
+                placeholder="01XXXXXXXXX"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 required
                 className="mt-1"
               />
             </div>
             <div>
-              <label className="text-sm font-medium text-muted-foreground">{t("password")}</label>
+              <label className="text-sm font-medium text-muted-foreground flex items-center gap-1">
+                <Lock className="h-3.5 w-3.5" /> {t("password")}
+              </label>
               <Input
                 type="password"
                 value={password}
