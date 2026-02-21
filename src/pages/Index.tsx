@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Gamepad2, Trophy, TrendingUp, Zap, Star, Gift, Crown, Flame, ChevronRight, Fish, Target } from "lucide-react";
+import { Gamepad2, Trophy, TrendingUp, Zap, Star, Gift, Crown, Flame, ChevronRight, Fish, Target, Sparkles, Layers } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 import bannerWelcome from "@/assets/banner-welcome.jpg";
@@ -32,6 +32,13 @@ import imgMegaJoker from "@/assets/games/mega-joker.jpg";
 import imgBlackjack from "@/assets/games/blackjack.jpg";
 import imgBaccarat from "@/assets/games/baccarat.jpg";
 import imgCoinFlip from "@/assets/games/coin-flip.jpg";
+import imgGoldenFish from "@/assets/games/golden-fish.jpg";
+import imgOceanKing from "@/assets/games/ocean-king.jpg";
+import imgPoker from "@/assets/games/poker.jpg";
+import imgWolfGold from "@/assets/games/wolf-gold.jpg";
+import imgFruitParty from "@/assets/games/fruit-party.jpg";
+import imgRoulette from "@/assets/games/roulette.jpg";
+
 const bannerSlides = [
   {
     title: "🎉 Monthly Invite Friend Bonus!",
@@ -122,6 +129,35 @@ const sportsGames = [
   { name: "Football", provider: "CK444 Sports", image: imgFootball },
   { name: "Cricket Live", provider: "CK444 Sports", image: imgCricket },
   { name: "Football Live", provider: "CK444 Sports", image: imgFootball },
+];
+
+const tableGames = [
+  { name: "Blackjack Royal", provider: "Evolution", image: imgBlackjack },
+  { name: "Baccarat Live", provider: "Evolution", image: imgBaccarat },
+  { name: "Texas Hold'em", provider: "Evolution", image: imgPoker },
+  { name: "Roulette Master", provider: "Evolution", image: imgRoulette },
+  { name: "Lightning Roulette", provider: "Evolution", image: imgLightningRoulette },
+  { name: "Crazy Time", provider: "Evolution", image: imgCrazyTime },
+];
+
+const fishingGames = [
+  { name: "Golden Fish", provider: "JDB", image: imgGoldenFish },
+  { name: "Ocean King", provider: "JDB", image: imgOceanKing },
+  { name: "Treasure Hunt", provider: "Hacksaw", image: imgTreasureHunt },
+  { name: "Golden Fish 2", provider: "JDB", image: imgGoldenFish },
+  { name: "Ocean King 3", provider: "JDB", image: imgOceanKing },
+  { name: "Big Bass Bonanza", provider: "Pragmatic Play", image: imgBigBass },
+];
+
+const newGames = [
+  { name: "Wolf Gold", provider: "Pragmatic Play", image: imgWolfGold },
+  { name: "Fruit Party", provider: "Pragmatic Play", image: imgFruitParty },
+  { name: "Dragon's Fortune", provider: "PG Soft", image: imgDragonsFortune },
+  { name: "Coin Flip", provider: "Custom", image: imgCoinFlip },
+  { name: "Roulette Master", provider: "Evolution", image: imgRoulette },
+  { name: "Texas Hold'em", provider: "Evolution", image: imgPoker },
+  { name: "Book of Dead", provider: "Play'n GO", image: imgBookOfDead },
+  { name: "Mega Joker", provider: "NetEnt", image: imgMegaJoker },
 ];
 
 const gameCategories = [
@@ -306,6 +342,9 @@ const Index = () => {
           <GameRow title="Live Casino" titleBn="লাইভ ক্যাসিনো" icon={Trophy} games={liveCasinoGames} href="/games/live-casino" iconColor="text-neon-gold" />
           <GameRow title="Crash Games" titleBn="ক্র্যাশ গেমস" icon={Zap} games={crashGames} href="/games/crash" iconColor="text-accent" />
           <GameRow title="Sports" titleBn="স্পোর্টস" icon={TrendingUp} games={sportsGames} href="/games/sports" iconColor="text-neon-green" />
+          <GameRow title="Table Games" titleBn="টেবিল গেমস" icon={Layers} games={tableGames} href="/games/live-casino" iconColor="text-neon-purple" />
+          <GameRow title="Fishing Games" titleBn="ফিশিং গেমস" icon={Fish} games={fishingGames} href="/games/mini" iconColor="text-cyan-400" />
+          <GameRow title="New Games" titleBn="নতুন গেমস" icon={Sparkles} games={newGames} href="/games/hot" iconColor="text-secondary" />
         </div>
 
         {/* Jackpot */}
