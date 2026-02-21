@@ -24,7 +24,14 @@ import imgBigBass from "@/assets/games/big-bass.jpg";
 import imgStarburst from "@/assets/games/starburst.jpg";
 import imgCricket from "@/assets/games/cricket.jpg";
 import imgFootball from "@/assets/games/football.jpg";
-
+import imgDragonsFortune from "@/assets/games/dragons-fortune.jpg";
+import imgTreasureHunt from "@/assets/games/treasure-hunt.jpg";
+import imgLuckyWheel from "@/assets/games/lucky-wheel.jpg";
+import imgBookOfDead from "@/assets/games/book-of-dead.jpg";
+import imgMegaJoker from "@/assets/games/mega-joker.jpg";
+import imgBlackjack from "@/assets/games/blackjack.jpg";
+import imgBaccarat from "@/assets/games/baccarat.jpg";
+import imgCoinFlip from "@/assets/games/coin-flip.jpg";
 const bannerSlides = [
   {
     title: "🎉 Monthly Invite Friend Bonus!",
@@ -70,15 +77,23 @@ const hotGames = [
   { name: "Gates of Olympus", provider: "Pragmatic Play", image: imgGatesOfOlympus },
   { name: "Lightning Roulette", provider: "Evolution", image: imgLightningRoulette },
   { name: "Big Bass Bonanza", provider: "Pragmatic Play", image: imgBigBass },
+  { name: "Dragon's Fortune", provider: "PG Soft", image: imgDragonsFortune },
+  { name: "Book of Dead", provider: "Play'n GO", image: imgBookOfDead },
   { name: "Starburst", provider: "NetEnt", image: imgStarburst },
   { name: "Plinko", provider: "Custom", image: imgPlinko },
+  { name: "Treasure Hunt", provider: "Hacksaw", image: imgTreasureHunt },
+  { name: "Lucky Wheel", provider: "Evolution", image: imgLuckyWheel },
 ];
 
 const slotGames = [
   { name: "Sweet Bonanza", provider: "Pragmatic Play", image: imgSweetBonanza },
   { name: "Gates of Olympus", provider: "Pragmatic Play", image: imgGatesOfOlympus },
   { name: "Big Bass Bonanza", provider: "Pragmatic Play", image: imgBigBass },
+  { name: "Dragon's Fortune", provider: "PG Soft", image: imgDragonsFortune },
+  { name: "Book of Dead", provider: "Play'n GO", image: imgBookOfDead },
+  { name: "Mega Joker", provider: "NetEnt", image: imgMegaJoker },
   { name: "Starburst", provider: "NetEnt", image: imgStarburst },
+  { name: "Treasure Hunt", provider: "Hacksaw", image: imgTreasureHunt },
   { name: "Plinko", provider: "Custom", image: imgPlinko },
   { name: "Mines", provider: "Custom", image: imgMines },
 ];
@@ -86,15 +101,20 @@ const slotGames = [
 const liveCasinoGames = [
   { name: "Crazy Time", provider: "Evolution", image: imgCrazyTime },
   { name: "Lightning Roulette", provider: "Evolution", image: imgLightningRoulette },
+  { name: "Blackjack Royal", provider: "Evolution", image: imgBlackjack },
+  { name: "Baccarat Live", provider: "Evolution", image: imgBaccarat },
+  { name: "Lucky Wheel", provider: "Evolution", image: imgLuckyWheel },
   { name: "Sweet Bonanza", provider: "Pragmatic Play", image: imgSweetBonanza },
   { name: "Gates of Olympus", provider: "Pragmatic Play", image: imgGatesOfOlympus },
 ];
 
 const crashGames = [
   { name: "Aviator", provider: "Spribe", image: imgAviator },
+  { name: "Coin Flip", provider: "Custom", image: imgCoinFlip },
   { name: "Mines", provider: "Custom", image: imgMines },
   { name: "Dice", provider: "Custom", image: imgDice },
   { name: "Plinko", provider: "Custom", image: imgPlinko },
+  { name: "Lucky Wheel", provider: "Custom", image: imgLuckyWheel },
 ];
 
 const sportsGames = [
