@@ -129,7 +129,7 @@ const AnnouncementModal = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 30 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed inset-4 sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:w-[90vw] sm:max-w-[750px] sm:max-h-[85vh] z-[101] flex flex-col rounded-xl overflow-hidden border-2 border-secondary/40 shadow-[0_0_40px_hsl(40_100%_50%/0.2)]"
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-[750px] max-h-[85vh] z-[101] flex flex-col rounded-xl overflow-hidden border-2 border-secondary/40 shadow-[0_0_40px_hsl(40_100%_50%/0.2)]"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-[hsl(175,50%,20%)] to-[hsl(175,50%,25%)] px-4 py-3 flex items-center justify-between shrink-0">
