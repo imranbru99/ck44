@@ -123,18 +123,6 @@ const AuthModal = ({ open, onOpenChange, defaultMode = "login" }: AuthModalProps
             <form onSubmit={handleRegister} className="space-y-3">
               <div>
                 <label className="text-xs font-medium text-muted-foreground flex items-center gap-1 mb-1">
-                  <User className="h-3 w-3" /> Display Name
-                </label>
-                <Input
-                  type="text"
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  required
-                  className="bg-muted border-border"
-                />
-              </div>
-              <div>
-                <label className="text-xs font-medium text-muted-foreground flex items-center gap-1 mb-1">
                   <Phone className="h-3 w-3" /> {t("phone") || "Phone Number"}
                 </label>
                 <Input
