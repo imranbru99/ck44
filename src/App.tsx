@@ -19,6 +19,8 @@ import ApiSettings from "./pages/admin/ApiSettings";
 import AdminSiteSettings from "./pages/admin/AdminSiteSettings";
 import AdminPlaceholder from "./pages/admin/AdminPlaceholder";
 import AdminPopup from "./pages/admin/AdminPopup";
+import AdminDepositMethods from "./pages/admin/AdminDepositMethods";
+import DepositPage from "./pages/DepositPage";
 import SlotsPage from "./pages/games/SlotsPage";
 import LiveCasinoPage from "./pages/games/LiveCasinoPage";
 import CrashPage from "./pages/games/CrashPage";
@@ -55,6 +57,7 @@ const App = () => (
                 <Route path="/games/hot" element={<HotGamesPage />} />
                 <Route path="/promotions" element={<Promotions />} />
                 <Route path="/wallet" element={<RequireAuth><Wallet /></RequireAuth>} />
+                <Route path="/deposit" element={<RequireAuth><DepositPage /></RequireAuth>} />
                 <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
                 <Route path="/vip" element={<RequireAuth><VipPage /></RequireAuth>} />
                 <Route path="/support" element={<SupportPage />} />
@@ -73,6 +76,7 @@ const App = () => (
                 <Route path="reports" element={<AdminPlaceholder title="Reports" />} />
                 <Route path="api-settings" element={<ApiSettings />} />
                 <Route path="popup" element={<AdminPopup />} />
+                <Route path="deposit-methods" element={<AdminDepositMethods />} />
                 <Route path="settings" element={<AdminSiteSettings />} />
               </Route>
 
