@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import AdminLayout from "./components/admin/AdminLayout";
+import RequireAuth from "./components/RequireAuth";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminFinance from "./pages/admin/AdminFinance";
@@ -51,9 +52,9 @@ const App = () => (
                 <Route path="/games/mini" element={<MiniGamesPage />} />
                 <Route path="/games/hot" element={<HotGamesPage />} />
                 <Route path="/promotions" element={<Promotions />} />
-                <Route path="/wallet" element={<Wallet />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/vip" element={<VipPage />} />
+                <Route path="/wallet" element={<RequireAuth><Wallet /></RequireAuth>} />
+                <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
+                <Route path="/vip" element={<RequireAuth><VipPage /></RequireAuth>} />
                 <Route path="/support" element={<SupportPage />} />
               </Route>
 
