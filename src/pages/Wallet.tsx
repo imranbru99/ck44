@@ -42,7 +42,10 @@ const Wallet = () => {
           </CardHeader>
           <CardContent className="space-y-3">
             <Input placeholder={language === "bn" ? "পরিমাণ" : "Amount"} type="number" className="bg-card" />
-            <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold">
+            <Button
+              className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 font-bold"
+              onClick={() => navigate("/deposit")}
+            >
               {language === "bn" ? "জমা করুন" : "Deposit"}
             </Button>
           </CardContent>
