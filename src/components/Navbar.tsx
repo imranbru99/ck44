@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import AuthModal from "@/components/AuthModal";
 import UserAccountSheet from "@/components/UserAccountSheet";
+import PersonalCentreModal from "@/components/PersonalCentreModal";
 
 const navCategories = [
   { icon: Home, labelKey: "home" as const, href: "/" },
@@ -26,6 +27,8 @@ const Navbar = () => {
   const [authOpen, setAuthOpen] = useState(false);
   const [authMode, setAuthMode] = useState<"login" | "register">("login");
   const [accountOpen, setAccountOpen] = useState(false);
+  const [centreOpen, setCentreOpen] = useState(false);
+  const [centreTab, setCentreTab] = useState<"deposit" | "withdraw">("deposit");
 
   const openAuth = (mode: "login" | "register") => {
     setAuthMode(mode);
@@ -85,9 +88,20 @@ const Navbar = () => {
 
             {user ? (
               <>
-                <Button variant="ghost" size="sm" onClick={() => navigate("/wallet")} className="hidden sm:flex gap-1 text-secondary hover:bg-muted">
-                  <Wallet className="h-4 w-4" />
-                  {t("wallet")}
+                <Button
+                  size="sm"
+                  onClick={() => { setCentreTab("deposit"); setCentreOpen(true); }}
+                  className="bg-green-600 text-white hover:bg-green-700 font-bold rounded px-4 text-xs"
+                >
+                  {t("deposit") || (language === "bn" ? "জমা" : "Deposit")}
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => { setCentreTab("withdraw"); setCentreOpen(true); }}
+                  className="border-secondary text-secondary hover:bg-secondary/10 font-bold rounded px-4 text-xs"
+                >
+                  {language === "bn" ? "উত্তোলন" : "Withdraw"}
                 </Button>
                 <Button variant="ghost" size="icon" onClick={() => setAccountOpen(true)} className="text-foreground hover:bg-muted">
                   <User className="h-4 w-4" />
@@ -137,6 +151,7 @@ const Navbar = () => {
 
       <AuthModal open={authOpen} onOpenChange={setAuthOpen} defaultMode={authMode} />
       <UserAccountSheet open={accountOpen} onOpenChange={setAccountOpen} />
+      <PersonalCentreModal open={centreOpen} onOpenChange={setCentreOpen} defaultTab={centreTab} />
     </>
   );
 };
