@@ -2,22 +2,13 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Globe, Wallet, User, LogOut, Home, Trophy, Gamepad2, TrendingUp, Zap, Star, Dice1, Gift } from "lucide-react";
+import { Menu, X, Globe, User } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import AuthModal from "@/components/AuthModal";
 import UserAccountSheet from "@/components/UserAccountSheet";
 import PersonalCentreModal from "@/components/PersonalCentreModal";
-
-const navCategories = [
-  { icon: Home, labelKey: "home" as const, href: "/" },
-  { icon: Trophy, labelKey: "liveCasino" as const, href: "/games/live-casino" },
-  { icon: Gamepad2, labelKey: "slots" as const, href: "/games/slots" },
-  { icon: Dice1, labelKey: "crash" as const, href: "/games/crash" },
-  { icon: TrendingUp, labelKey: "sports" as const, href: "/games/sports" },
-  { icon: Star, labelKey: "miniGames" as const, href: "/games/mini" },
-  { icon: Gift, labelKey: "promotions" as const, href: "/promotions" },
-];
+import PlayerSidebar from "@/components/PlayerSidebar";
 
 const Navbar = () => {
   const { t, language, setLanguage } = useLanguage();
@@ -33,11 +24,6 @@ const Navbar = () => {
   const openAuth = (mode: "login" | "register") => {
     setAuthMode(mode);
     setAuthOpen(true);
-  };
-
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    navigate("/");
   };
 
   return (
@@ -59,20 +45,6 @@ const Navbar = () => {
                 CK444.COM
               </span>
             </Link>
-          </div>
-
-          {/* Desktop Category Nav */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navCategories.map((cat) => (
-              <Link
-                key={cat.href}
-                to={cat.href}
-                className="flex flex-col items-center gap-0.5 px-3 py-1.5 text-foreground/80 hover:text-secondary transition-colors rounded-md hover:bg-muted group"
-              >
-                <cat.icon className="h-5 w-5 group-hover:text-secondary transition-colors" />
-                <span className="text-[10px] font-semibold">{t(cat.labelKey)}</span>
-              </Link>
-            ))}
           </div>
 
           {/* Right Actions */}
@@ -128,26 +100,20 @@ const Navbar = () => {
             )}
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        {mobileOpen && (
-          <div className="lg:hidden bg-card border-t border-border p-3">
-            <div className="grid grid-cols-4 gap-2">
-              {navCategories.map((cat) => (
-                <Link
-                  key={cat.href}
-                  to={cat.href}
-                  className="flex flex-col items-center gap-1 p-2 text-foreground/80 hover:text-secondary transition-colors rounded-lg hover:bg-muted"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <cat.icon className="h-6 w-6" />
-                  <span className="text-[10px] font-semibold text-center">{t(cat.labelKey)}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
       </nav>
+
+      {/* Mobile Sidebar Drawer */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-40 lg:hidden" onClick={() => setMobileOpen(false)}>
+          <div className="absolute inset-0 bg-black/60" />
+          <div
+            className="absolute inset-y-0 left-0 w-[200px] bg-card border-r border-border overflow-y-auto animate-in slide-in-from-left duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <PlayerSidebar mobile onNavigate={() => setMobileOpen(false)} />
+          </div>
+        </div>
+      )}
 
       <AuthModal open={authOpen} onOpenChange={setAuthOpen} defaultMode={authMode} />
       <UserAccountSheet open={accountOpen} onOpenChange={setAccountOpen} />

@@ -28,40 +28,52 @@ const sidebarItems = [
   { icon: Headphones, label: "Support", labelBn: "গ্রাহক সেবা", href: "/support", color: "text-green-400" },
 ];
 
-const PlayerSidebar = () => {
+interface PlayerSidebarProps {
+  mobile?: boolean;
+  onNavigate?: () => void;
+}
+
+const PlayerSidebar = ({ mobile, onNavigate }: PlayerSidebarProps) => {
   const { language } = useLanguage();
   const location = useLocation();
 
+  const content = (
+    <div className="grid grid-cols-2 gap-1 p-2">
+      {sidebarItems.map((item) => {
+        const active = location.pathname === item.href;
+        return (
+          <Link
+            key={item.label}
+            to={item.href}
+            onClick={onNavigate}
+            className={cn(
+              "flex flex-col items-center gap-1.5 p-2.5 rounded-lg text-center transition-all hover:bg-muted/60 group",
+              active && "bg-muted/80"
+            )}
+          >
+            <div className={cn(
+              "w-9 h-9 rounded-lg flex items-center justify-center bg-muted/50 group-hover:bg-muted transition-colors",
+              active && "bg-secondary/20"
+            )}>
+              <item.icon className={cn("h-5 w-5", item.color)} />
+            </div>
+            <span className={cn(
+              "text-[10px] font-medium leading-tight line-clamp-2",
+              active ? "text-secondary" : "text-foreground/80"
+            )}>
+              {language === "bn" ? item.labelBn : item.label}
+            </span>
+          </Link>
+        );
+      })}
+    </div>
+  );
+
+  if (mobile) return content;
+
   return (
     <aside className="hidden lg:block shrink-0 w-[180px] bg-card/80 border-r border-border h-[calc(100vh-56px)] sticky top-14 overflow-y-auto scrollbar-hide">
-      <div className="grid grid-cols-2 gap-1 p-2">
-        {sidebarItems.map((item) => {
-          const active = location.pathname === item.href;
-          return (
-            <Link
-              key={item.label}
-              to={item.href}
-              className={cn(
-                "flex flex-col items-center gap-1.5 p-2.5 rounded-lg text-center transition-all hover:bg-muted/60 group",
-                active && "bg-muted/80"
-              )}
-            >
-              <div className={cn(
-                "w-9 h-9 rounded-lg flex items-center justify-center bg-muted/50 group-hover:bg-muted transition-colors",
-                active && "bg-secondary/20"
-              )}>
-                <item.icon className={cn("h-5 w-5", item.color)} />
-              </div>
-              <span className={cn(
-                "text-[10px] font-medium leading-tight line-clamp-2",
-                active ? "text-secondary" : "text-foreground/80"
-              )}>
-                {language === "bn" ? item.labelBn : item.label}
-              </span>
-            </Link>
-          );
-        })}
-      </div>
+      {content}
     </aside>
   );
 };
