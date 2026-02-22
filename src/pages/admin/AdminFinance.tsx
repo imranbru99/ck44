@@ -29,7 +29,7 @@ const AdminFinance = () => {
         .select("*")
         .eq("type", "deposit")
         .order("created_at", { ascending: false })
-        .limit(20),
+        .limit(50),
     ]);
 
     setPendingWithdrawals(withdrawals.data || []);
@@ -37,17 +37,17 @@ const AdminFinance = () => {
     setLoading(false);
   };
 
-  const handleWithdrawal = async (id: string, action: "completed" | "cancelled") => {
+  const handleTransaction = async (id: string, action: "completed" | "cancelled") => {
     const { error } = await supabase
       .from("transactions")
       .update({ status: action })
       .eq("id", id);
 
     if (error) {
-      toast.error("Failed to update withdrawal");
+      toast.error("Failed to update transaction");
       return;
     }
-    toast.success(`Withdrawal ${action}`);
+    toast.success(`Transaction ${action}`);
     fetchData();
   };
 
@@ -99,7 +99,7 @@ const AdminFinance = () => {
                       <div className="flex gap-2">
                         <Button
                           size="sm"
-                          onClick={() => handleWithdrawal(tx.id, "completed")}
+                          onClick={() => handleTransaction(tx.id, "completed")}
                           className="bg-neon-green/20 text-neon-green hover:bg-neon-green/30"
                         >
                           <CheckCircle className="h-4 w-4 mr-1" />
@@ -108,7 +108,7 @@ const AdminFinance = () => {
                         <Button
                           size="sm"
                           variant="destructive"
-                          onClick={() => handleWithdrawal(tx.id, "cancelled")}
+                          onClick={() => handleTransaction(tx.id, "cancelled")}
                         >
                           <XCircle className="h-4 w-4 mr-1" />
                           Reject
@@ -133,17 +133,32 @@ const AdminFinance = () => {
               ) : (
                 <div className="space-y-2">
                   {recentDeposits.map((tx) => (
-                    <div key={tx.id} className="flex items-center justify-between py-2 border-b border-border last:border-0">
+                    <div key={tx.id} className="flex items-center justify-between py-3 border-b border-border last:border-0">
                       <div className="flex items-center gap-2">
                         {statusIcon(tx.status)}
                         <div>
                           <p className="text-sm font-medium">৳{Number(tx.amount).toLocaleString()}</p>
                           <p className="text-xs text-muted-foreground">{tx.payment_method || "N/A"}</p>
+                          {tx.reference_id && <p className="text-xs text-muted-foreground">Trx: {tx.reference_id}</p>}
+                          <p className="text-xs text-muted-foreground">User: {tx.user_id.slice(0, 8)}...</p>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <Badge variant="outline" className="capitalize text-xs">{tx.status}</Badge>
-                        <p className="text-xs text-muted-foreground mt-1">{new Date(tx.created_at).toLocaleDateString()}</p>
+                      <div className="flex items-center gap-2">
+                        {tx.status === "pending" ? (
+                          <>
+                            <Button size="sm" onClick={() => handleTransaction(tx.id, "completed")} className="bg-neon-green/20 text-neon-green hover:bg-neon-green/30">
+                              <CheckCircle className="h-4 w-4 mr-1" /> Approve
+                            </Button>
+                            <Button size="sm" variant="destructive" onClick={() => handleTransaction(tx.id, "cancelled")}>
+                              <XCircle className="h-4 w-4 mr-1" /> Reject
+                            </Button>
+                          </>
+                        ) : (
+                          <div className="text-right">
+                            <Badge variant="outline" className="capitalize text-xs">{tx.status}</Badge>
+                            <p className="text-xs text-muted-foreground mt-1">{new Date(tx.created_at).toLocaleDateString()}</p>
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
