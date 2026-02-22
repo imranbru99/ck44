@@ -6,6 +6,7 @@ import { Menu, X, Globe, Wallet, User, LogOut, Home, Trophy, Gamepad2, TrendingU
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import AuthModal from "@/components/AuthModal";
+import UserAccountSheet from "@/components/UserAccountSheet";
 
 const navCategories = [
   { icon: Home, labelKey: "home" as const, href: "/" },
@@ -24,6 +25,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
   const [authMode, setAuthMode] = useState<"login" | "register">("login");
+  const [accountOpen, setAccountOpen] = useState(false);
 
   const openAuth = (mode: "login" | "register") => {
     setAuthMode(mode);
@@ -87,11 +89,8 @@ const Navbar = () => {
                   <Wallet className="h-4 w-4" />
                   {t("wallet")}
                 </Button>
-                <Button variant="ghost" size="icon" onClick={() => navigate("/profile")} className="text-foreground hover:bg-muted">
+                <Button variant="ghost" size="icon" onClick={() => setAccountOpen(true)} className="text-foreground hover:bg-muted">
                   <User className="h-4 w-4" />
-                </Button>
-                <Button variant="ghost" size="icon" onClick={handleLogout} className="text-foreground/60 hover:text-foreground hover:bg-muted">
-                  <LogOut className="h-4 w-4" />
                 </Button>
               </>
             ) : (
@@ -137,6 +136,7 @@ const Navbar = () => {
       </nav>
 
       <AuthModal open={authOpen} onOpenChange={setAuthOpen} defaultMode={authMode} />
+      <UserAccountSheet open={accountOpen} onOpenChange={setAccountOpen} />
     </>
   );
 };
