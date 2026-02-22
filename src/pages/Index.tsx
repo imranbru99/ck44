@@ -4,7 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Gamepad2, Trophy, TrendingUp, Zap, Star, Gift, Crown, Flame, ChevronRight, Fish, Target, Sparkles, Layers } from "lucide-react";
+import { Gamepad2, Trophy, TrendingUp, Zap, Star, Gift, Crown, Flame, ChevronRight, Fish, Target, Sparkles, Layers, Swords, Ticket } from "lucide-react";
+import Footer from "@/components/Footer";
 import { useState, useEffect, useRef } from "react";
 
 import bannerWelcome from "@/assets/banner-welcome.jpg";
@@ -158,6 +159,23 @@ const newGames = [
   { name: "Texas Hold'em", provider: "Evolution", image: imgPoker },
   { name: "Book of Dead", provider: "Play'n GO", image: imgBookOfDead },
   { name: "Mega Joker", provider: "NetEnt", image: imgMegaJoker },
+];
+
+const eSportsGames = [
+  { name: "Cricket League", provider: "CK444 E-Sports", image: imgCricket },
+  { name: "Football Championship", provider: "CK444 E-Sports", image: imgFootball },
+  { name: "Cricket World Cup", provider: "CK444 E-Sports", image: imgCricket },
+  { name: "Premier League", provider: "CK444 E-Sports", image: imgFootball },
+  { name: "Champions Cup", provider: "CK444 E-Sports", image: imgCricket },
+  { name: "Super League", provider: "CK444 E-Sports", image: imgFootball },
+];
+
+const lotteryGames = [
+  { name: "Lucky Draw", provider: "JDB", image: imgLuckyWheel },
+  { name: "Mega Lottery", provider: "JDB", image: imgTreasureHunt },
+  { name: "Golden Ticket", provider: "PG Soft", image: imgDragonsFortune },
+  { name: "Fortune Wheel", provider: "Evolution", image: imgLuckyWheel },
+  { name: "Diamond Jackpot", provider: "JDB", image: imgTreasureHunt },
 ];
 
 const gameCategories = [
@@ -344,6 +362,8 @@ const Index = () => {
           <GameRow title="Sports" titleBn="স্পোর্টস" icon={TrendingUp} games={sportsGames} href="/games/sports" iconColor="text-neon-green" />
           <GameRow title="Table Games" titleBn="টেবিল গেমস" icon={Layers} games={tableGames} href="/games/live-casino" iconColor="text-neon-purple" />
           <GameRow title="Fishing Games" titleBn="ফিশিং গেমস" icon={Fish} games={fishingGames} href="/games/mini" iconColor="text-cyan-400" />
+          <GameRow title="E-Sports" titleBn="ই-স্পোর্টস" icon={Swords} games={eSportsGames} href="/games/sports" iconColor="text-neon-cyan" />
+          <GameRow title="Lottery" titleBn="লটারি" icon={Ticket} games={lotteryGames} href="/games/mini" iconColor="text-neon-purple" />
           <GameRow title="New Games" titleBn="নতুন গেমস" icon={Sparkles} games={newGames} href="/games/hot" iconColor="text-secondary" />
         </div>
 
@@ -384,13 +404,7 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="border-t border-border bg-card/80 py-6">
-          <div className="text-center text-sm text-muted-foreground">
-            <p className="font-display text-secondary neon-text-gold text-lg mb-1">CK444</p>
-            <p className="text-xs">© 2026 CK444. All rights reserved. 18+ Gamble responsibly.</p>
-          </div>
-        </footer>
+        <Footer />
       </>
     );
   }
@@ -535,13 +549,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border bg-card/80 py-8">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p className="font-display text-secondary neon-text-gold text-xl mb-2">CK444</p>
-          <p>© 2026 CK444. All rights reserved. 18+ Gamble responsibly.</p>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 };
