@@ -27,6 +27,7 @@ import LiveCasinoPage from "./pages/games/LiveCasinoPage";
 import CrashPage from "./pages/games/CrashPage";
 import SportsPage from "./pages/games/SportsPage";
 import MiniGamesPage from "./pages/games/MiniGamesPage";
+import GamePlayPage from "./pages/games/GamePlayPage";
 import HotGamesPage from "./pages/HotGamesPage";
 import Promotions from "./pages/Promotions";
 import Wallet from "./pages/Wallet";
@@ -62,6 +63,7 @@ const App = () => (
                 <Route path="/games/sports" element={<SportsPage />} />
                 <Route path="/games/mini" element={<MiniGamesPage />} />
                 <Route path="/games/hot" element={<HotGamesPage />} />
+                <Route path="/play/:slug" element={<RequireAuth><GamePlayPage /></RequireAuth>} />
                 <Route path="/promotions" element={<Promotions />} />
                 <Route path="/wallet" element={<RequireAuth><Wallet /></RequireAuth>} />
                 <Route path="/deposit" element={<RequireAuth><DepositPage /></RequireAuth>} />

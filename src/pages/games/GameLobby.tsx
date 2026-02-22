@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Gamepad2, Flame, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { gameNameToSlug, isPlayable } from "./GamePlayPage";
 
 interface GameLobbyProps {
   category: string;
@@ -13,6 +15,7 @@ interface GameLobbyProps {
 
 const GameLobby = ({ category, categoryBn, games }: GameLobbyProps) => {
   const { language } = useLanguage();
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
 
   const filtered = games.filter((g) =>
@@ -43,7 +46,8 @@ const GameLobby = ({ category, categoryBn, games }: GameLobbyProps) => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: i * 0.03 }}
           >
-            <Card className="cursor-pointer border-border hover:border-secondary/50 transition-all group overflow-hidden bg-card">
+            <Card className="cursor-pointer border-border hover:border-secondary/50 transition-all group overflow-hidden bg-card"
+              onClick={() => navigate(`/play/${gameNameToSlug(game.name)}`)}>
               <div className="aspect-[4/3] relative overflow-hidden">
                 {game.image ? (
                   <img src={game.image} alt={game.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />

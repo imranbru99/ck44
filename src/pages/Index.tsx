@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Gamepad2, Trophy, TrendingUp, Zap, Star, Gift, Crown, Flame, ChevronRight, Fish, Sparkles, Swords, Ticket, Heart, Crosshair } from "lucide-react";
 import Footer from "@/components/Footer";
 import { useState, useEffect, useRef } from "react";
+import { gameNameToSlug } from "@/pages/games/GamePlayPage";
 
 import bannerWelcome from "@/assets/banner-welcome.jpg";
 import bannerDaily from "@/assets/banner-daily.jpg";
@@ -281,7 +282,8 @@ const CategorySection = ({ tabKey, label, labelBn, icon: Icon, iconColor, games,
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: i * 0.02 }}
           >
-            <Card className="cursor-pointer border-border hover:border-secondary/50 transition-all group overflow-hidden bg-card">
+            <Card className="cursor-pointer border-border hover:border-secondary/50 transition-all group overflow-hidden bg-card"
+              onClick={() => navigate(`/play/${gameNameToSlug(game.name)}`)}>
               <div className="aspect-[4/3] relative overflow-hidden">
                 <img src={game.image} alt={game.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-2">
