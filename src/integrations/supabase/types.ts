@@ -164,6 +164,36 @@ export type Database = {
         }
         Relationships: []
       }
+      user_payment_accounts: {
+        Row: {
+          account_holder: string | null
+          account_number: string
+          created_at: string
+          id: string
+          is_default: boolean
+          method_name: string
+          user_id: string
+        }
+        Insert: {
+          account_holder?: string | null
+          account_number: string
+          created_at?: string
+          id?: string
+          is_default?: boolean
+          method_name: string
+          user_id: string
+        }
+        Update: {
+          account_holder?: string | null
+          account_number?: string
+          created_at?: string
+          id?: string
+          is_default?: boolean
+          method_name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
