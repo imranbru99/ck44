@@ -1,9 +1,7 @@
 import { Outlet } from "react-router-dom";
-import { useAuth } from "@/hooks/useAuth";
 import Navbar from "@/components/Navbar";
 import PlayerSidebar from "@/components/PlayerSidebar";
 import PromoPopup from "@/components/PromoPopup";
-import { useLanguage } from "@/i18n/LanguageContext";
 
 const marqueeMessages = [
   "🎉কোটিপতি হতে আপনার ব্যক্তিগত লিঙ্কটি শেয়ার করুন!🎉",
@@ -13,8 +11,6 @@ const marqueeMessages = [
 ];
 
 const PlayerLayout = () => {
-  const { user } = useAuth();
-
   return (
     <div className="min-h-screen bg-background">
       <PromoPopup />
@@ -31,18 +27,12 @@ const PlayerLayout = () => {
         </div>
       </div>
 
-      {user ? (
-        <div className="flex">
-          <PlayerSidebar />
-          <main className="flex-1 min-w-0 overflow-hidden">
-            <Outlet />
-          </main>
-        </div>
-      ) : (
-        <main>
+      <div className="flex">
+        <PlayerSidebar />
+        <main className="flex-1 min-w-0 overflow-hidden">
           <Outlet />
         </main>
-      )}
+      </div>
     </div>
   );
 };
