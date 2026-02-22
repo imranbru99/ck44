@@ -21,6 +21,7 @@ import AdminPlaceholder from "./pages/admin/AdminPlaceholder";
 import AdminPopup from "./pages/admin/AdminPopup";
 import AdminDepositMethods from "./pages/admin/AdminDepositMethods";
 import DepositPage from "./pages/DepositPage";
+import WithdrawPage from "./pages/WithdrawPage";
 import SlotsPage from "./pages/games/SlotsPage";
 import LiveCasinoPage from "./pages/games/LiveCasinoPage";
 import CrashPage from "./pages/games/CrashPage";
@@ -58,6 +59,7 @@ const App = () => (
                 <Route path="/promotions" element={<Promotions />} />
                 <Route path="/wallet" element={<RequireAuth><Wallet /></RequireAuth>} />
                 <Route path="/deposit" element={<RequireAuth><DepositPage /></RequireAuth>} />
+                <Route path="/withdraw" element={<RequireAuth><WithdrawPage /></RequireAuth>} />
                 <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
                 <Route path="/vip" element={<RequireAuth><VipPage /></RequireAuth>} />
                 <Route path="/support" element={<SupportPage />} />

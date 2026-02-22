@@ -60,7 +60,11 @@ const Wallet = () => {
           </CardHeader>
           <CardContent className="space-y-3">
             <Input placeholder={language === "bn" ? "পরিমাণ" : "Amount"} type="number" className="bg-card" />
-            <Button variant="outline" className="w-full border-destructive text-destructive hover:bg-destructive/10 font-bold">
+            <Button
+              variant="outline"
+              className="w-full border-destructive text-destructive hover:bg-destructive/10 font-bold"
+              onClick={() => navigate("/withdraw")}
+            >
               {language === "bn" ? "উত্তোলন করুন" : "Withdraw"}
             </Button>
           </CardContent>
