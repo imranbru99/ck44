@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,6 +13,8 @@ const phoneToEmail = (phone: string) => `${phone.replace(/[^0-9]/g, "")}@ck444.a
 const Register = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const refCode = searchParams.get("ref") || "";
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -31,7 +33,7 @@ const Register = () => {
       email,
       password,
       options: {
-        data: { display_name: displayName, phone },
+        data: { display_name: displayName, phone, referred_by_code: refCode },
       },
     });
     setLoading(false);
