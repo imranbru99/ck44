@@ -30,6 +30,7 @@ import Wallet from "./pages/Wallet";
 import Profile from "./pages/Profile";
 import VipPage from "./pages/VipPage";
 import SupportPage from "./pages/SupportPage";
+import AnnouncementModal from "./components/AnnouncementModal";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
+          <AnnouncementModal />
           <BrowserRouter>
             <Routes>
               {/* Player routes with persistent sidebar */}
