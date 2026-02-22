@@ -34,6 +34,12 @@ import Profile from "./pages/Profile";
 import VipPage from "./pages/VipPage";
 import SupportPage from "./pages/SupportPage";
 import AnnouncementModal from "./components/AnnouncementModal";
+import BettingRecordPage from "./pages/BettingRecordPage";
+import AccountRecordPage from "./pages/AccountRecordPage";
+import AwardCentrePage from "./pages/AwardCentrePage";
+import InviteFriendPage from "./pages/InviteFriendPage";
+import MissionPage from "./pages/MissionPage";
+import MessagePage from "./pages/MessagePage";
 
 const queryClient = new QueryClient();
 
@@ -62,6 +68,12 @@ const App = () => (
                 <Route path="/withdraw" element={<RequireAuth><WithdrawPage /></RequireAuth>} />
                 <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
                 <Route path="/vip" element={<RequireAuth><VipPage /></RequireAuth>} />
+                <Route path="/betting-record" element={<RequireAuth><BettingRecordPage /></RequireAuth>} />
+                <Route path="/account-record" element={<RequireAuth><AccountRecordPage /></RequireAuth>} />
+                <Route path="/award-centre" element={<RequireAuth><AwardCentrePage /></RequireAuth>} />
+                <Route path="/invite" element={<RequireAuth><InviteFriendPage /></RequireAuth>} />
+                <Route path="/mission" element={<RequireAuth><MissionPage /></RequireAuth>} />
+                <Route path="/messages" element={<RequireAuth><MessagePage /></RequireAuth>} />
                 <Route path="/support" element={<SupportPage />} />
               </Route>
 
