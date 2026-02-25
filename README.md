@@ -20,12 +20,12 @@ To get a local copy up and running, follow these simple steps:
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/imranbru99/newck44.git](https://github.com/imranbru99/newck44.git)
+    git clone [https://github.com/imranbru99/ck44.git](https://github.com/imranbru99/ck44.git)
     ```
 
 2.  **Navigate to the Directory:**
     ```bash
-    cd newck44
+    cd ck44
     ```
 
 3.  **Setup Environment:**
@@ -56,5 +56,5 @@ This project is open-source and free for all. Distributed under the MIT License.
 
 ## 📧 Contact
 
-**Project Link:** [https://github.com/imranbru99/newck44](https://github.com/imranbru99/newck44)  
+**Project Link:** [https://github.com/imranbru99/ck44](https://github.com/imranbru99/ck44)  
 **Live Site:** [https://jobsyq.com/](https://jobsyq.com/)
