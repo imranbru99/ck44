@@ -1,73 +1,60 @@
-# Welcome to your Lovable project
+# ck44 Script
 
-## Project info
+Welcome to the **ck44 Script** repository. This is a completely free, open-source script designed for high-performance web solutions. The code is fully completed and available for anyone to use, modify, and distribute.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+You can see a live implementation of the system at: **[jobsyq.com](https://jobsyq.com/)**
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🚀 Features
 
-**Use Lovable**
+* **100% Free & Open Source:** The code is available for everyone without any cost.
+* **Production Ready:** Completely made and ready for deployment.
+* **Lightweight & Fast:** Optimized for quick loading and efficient performance.
+* **User-Friendly:** Clean interface and easy navigation, as seen on [jobsyq.com](https://jobsyq.com/).
+* **Highly Customizable:** Easily modify the logic to suit your specific project needs.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 🛠️ Installation
 
-Changes made via Lovable will be committed automatically to this repo.
+To get a local copy up and running, follow these simple steps:
 
-**Use your preferred IDE**
+1.  **Clone the Repository:**
+    ```bash
+    git clone [https://github.com/imranbru99/newck44.git](https://github.com/imranbru99/newck44.git)
+    ```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+2.  **Navigate to the Directory:**
+    ```bash
+    cd newck44
+    ```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+3.  **Setup Environment:**
+    * Configure your environment variables (e.g., `.env` file).
+    * Install necessary dependencies (e.g., `npm install` or `composer install`).
 
-Follow these steps:
+4.  **Launch:**
+    * Start your local server to view the script in action.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 💻 Live Demo
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+You can explore the full functionality of this script by visiting the live site:
+👉 **[https://jobsyq.com/](https://jobsyq.com/)**
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 🤝 Contributing
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-**Edit a file directly in GitHub**
+1.  Fork the Project.
+2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`).
+3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`).
+4.  Push to the Branch (`git push origin feature/AmazingFeature`).
+5.  Open a Pull Request.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📜 License
 
-**Use GitHub Codespaces**
+This project is open-source and free for all. Distributed under the MIT License.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📧 Contact
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+**Project Link:** [https://github.com/imranbru99/newck44](https://github.com/imranbru99/newck44)  
+**Live Site:** [https://jobsyq.com/](https://jobsyq.com/)
